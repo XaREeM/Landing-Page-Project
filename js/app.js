@@ -48,7 +48,7 @@ function navBar() {
 navBar();
 
 // Add class 'your-active-class' to section when near top of viewport
-if (!!window.IntersectionObserver) {
+if (window.IntersectionObserver) {
     let observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -73,9 +73,20 @@ function goToSection(event, id) {
  * Begin Events
  *
  */
+let timeOutCounter = null;
+document.addEventListener('scroll', ()=> {
+  ul.style.display = 'block';
+  if(timeOutCounter != null) {
+    clearTimeout(timeOutCounter)
+  }
+  timeOutCounter = setTimeout(hideNav, 3000);
+});
+function hideNav() {
+  ul.style.display = 'none';
+}
+
+
 
 // Build menu
 
 // Scroll to section on link click
-
-
